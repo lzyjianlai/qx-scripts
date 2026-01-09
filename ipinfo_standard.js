@@ -1,0 +1,12 @@
+var obj = JSON.parse($response.body);
+var flags = new Map([["AC","🇦🇨"],["AE","🇦🇪"],["AU","🇦🇺"],["CA","🇨🇦"],["CH","🇨🇭"],["CN","🇨🇳"],["DE","🇩🇪"],["FR","🇫🇷"],["GB","🇬🇧"],["HK","🇭🇰"],["ID","🇮🇩"],["IN","🇮🇳"],["JP","🇯🇵"],["KR","🇰🇷"],["MO","🇲🇴"],["MY","🇲🇾"],["NL","🇳🇱"],["PH","🇵🇭"],["RU","🇷🇺"],["SG","🇸🇬"],["TH","🇹🇭"],["TW","🇹🇼"],["UK","🇬🇧"],["US","🇺🇸"],["VN","🇻🇳"]]);
+var flag = flags.get(obj.country) || "🏳️";
+var org = obj.org || "Unknown";
+var city = obj.city || "";
+var region = obj.region || "";
+var country = obj.country || "";
+var ip = obj.ip || "";
+var title = flag + " " + country + (city ? " - " + city : "");
+var subtitle = org;
+var description = (city ? city + ", " : "") + (region ? region + ", " : "") + country + "\n" + org + "\nIP: " + ip;
+$done({title: title, subtitle: subtitle, ip: ip, description: description});
